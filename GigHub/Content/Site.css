@@ -75,9 +75,14 @@ body {
     box-shadow: none;
 }
 
+select.form-control {
+    padding: 10px 15px;
+    height: inherit;
+}
 .btn {
     font-size: 17px;
     padding: 7px 20px;
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
+    
