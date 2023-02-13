@@ -179,10 +179,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\AttendancesController.cs" />
+    <Compile Include="Controllers\api\FollowingsController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\AttendanceDto.cs" />
+    <Compile Include="Dtos\FollowingDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,8 +216,22 @@
     <Compile Include="Migrations\202302091943352_AddAttendancesTable.Designer.cs">
       <DependentUpon>202302091943352_AddAttendancesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302102330093_AddFollowingsTable.cs" />
+    <Compile Include="Migrations\202302102330093_AddFollowingsTable.Designer.cs">
+      <DependentUpon>202302102330093_AddFollowingsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302111240576_RenameToFolloweeIdInFollowingsTable.cs" />
+    <Compile Include="Migrations\202302111240576_RenameToFolloweeIdInFollowingsTable.Designer.cs">
+      <DependentUpon>202302111240576_RenameToFolloweeIdInFollowingsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302111310357_RenameFolloweeToArtistInFollowingsTable.cs" />
+    <Compile Include="Migrations\202302111310357_RenameFolloweeToArtistInFollowingsTable.Designer.cs">
+      <DependentUpon>202302111310357_RenameFolloweeToArtistInFollowingsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Following.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
@@ -338,6 +354,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302091943352_AddAttendancesTable.resx">
       <DependentUpon>202302091943352_AddAttendancesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302102330093_AddFollowingsTable.resx">
+      <DependentUpon>202302102330093_AddFollowingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302111240576_RenameToFolloweeIdInFollowingsTable.resx">
+      <DependentUpon>202302111240576_RenameToFolloweeIdInFollowingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302111310357_RenameFolloweeToArtistInFollowingsTable.resx">
+      <DependentUpon>202302111310357_RenameFolloweeToArtistInFollowingsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

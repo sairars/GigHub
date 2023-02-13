@@ -1,10 +1,10 @@
-﻿@model IEnumerable<GigHub.Models.Gig>
+﻿@model GigHub.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 <ul class="gigs">
-    @foreach (var gig in Model)
+    @foreach (var gig in Model.UpcomingGigs)
     {
         <li>
             <div class="date">
@@ -12,12 +12,22 @@
                 <div class="day">@gig.DateTime.ToString("d ")</div>
             </div>
             <div class="details">
-                <span class="artist">@gig.Artist.Name</span>
-                <span class="genre">@gig.Genre.Name</span>
+                <span class="artist">
+                    @gig.Artist.Name
+                @if (Model.ShowActions)
+                {
+                    <button type="button" data-artist-id="@gig.ArtistId" class="btn btn-link js-toggle-following">Follow</button>
+
+                }
+            </span>
+            <span class="genre">@gig.Genre.Name</span>
+            @if (Model.ShowActions)
+            {
                 <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going ?</button>
-            </div>
-        </li>
-    }
+            }
+        </div>
+    </li>
+}
 </ul>
 
 
@@ -27,7 +37,7 @@
         $(document).ready(function () {
             $(".js-toggle-attendance").click(function () {
                 let button = $(this);
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id")})
+                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
                     .done(function () {
                         button
                             .removeClass("btn-default")
@@ -36,6 +46,17 @@
                     })
                     .fail(function () {
                         alert("Something failed!");
+                    });
+            });
+            $(".js-toggle-following").click(function () {
+                console.log("here");
+                let button = $(this);
+                $.post("/api/followings", { artistId: button.attr("data-artist-id") })
+                    .done(function () {
+                        button.text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
                     });
             });
         });
