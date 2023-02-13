@@ -32,7 +32,6 @@ namespace GigHub.Controllers
             {
                 UpcomingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
-                Title = "Upcoming Gigs",
                 Heading = "Upcoming Gigs"
             };
 

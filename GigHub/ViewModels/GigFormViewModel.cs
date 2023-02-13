@@ -2,11 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Web.Mvc;
+using GigHub.Controllers;
 
 namespace GigHub.ViewModels
 {
     public class GigFormViewModel
     {
+        public int Id { get; set; }
+
         [Required] 
         public string Venue { get; set; }
 
@@ -23,9 +28,25 @@ namespace GigHub.ViewModels
 
         public IEnumerable<Genre> Genres { get; set; }
 
+        public string Heading { get; set; }
+
         public DateTime GetDateTime()
         {
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
+        }
+
+        public string Action
+        {
+            
+            get
+            {
+                Expression<Func<GigsController, ActionResult>> update = (c => c.Update(this));
+                Expression<Func<GigsController, ActionResult>> create = (c => c.Create(this));
+
+                return (Id != 0)
+                    ? ((MethodCallExpression)update.Body).Method.Name
+                    : ((MethodCallExpression)create.Body).Method.Name;
+            }
         }
     }
 }
