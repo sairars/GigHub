@@ -1,9 +1,9 @@
 ﻿using GigHub.Models;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace GigHub.Controllers
 {
@@ -71,10 +71,12 @@ namespace GigHub.Controllers
             var viewModel = new GigsViewModel
             {
                 UpcomingGigs = gigsAttending,
-                ShowActions = true
+                ShowActions = User.Identity.IsAuthenticated,
+                Title = "Gigs I'm Attending",
+                Heading = "Gigs I'm Attending"
             };
 
-            return View(viewModel);
+            return View("Gigs", viewModel);
 
         }
     }
