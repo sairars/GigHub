@@ -30,6 +30,7 @@ namespace GigHub.Controllers.api
             return attendances;
         }
 
+        // POST /api/attendances
         [HttpPost]
         public IHttpActionResult Attend(AttendanceDto attendanceDto)
         {

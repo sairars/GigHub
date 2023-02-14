@@ -83,6 +83,7 @@ namespace GigHub.Controllers
             return RedirectToAction("Mine");
         }
 
+
         // POST Gigs/Update/1
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -95,7 +96,7 @@ namespace GigHub.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.SingleOrDefault(g => g.Id == viewModel.Id && 
+            var gig = _context.Gigs.SingleOrDefault(g => g.Id == viewModel.Id &&
                                                          g.ArtistId == userId);
 
             if (gig == null)
@@ -117,13 +118,15 @@ namespace GigHub.Controllers
             var userId = User.Identity.GetUserId();
             var myUpcomingGigs = _context.Gigs
                 .Where(g => g.ArtistId == userId &&
-                            g.DateTime > DateTime.Now)
+                            g.DateTime > DateTime.Now &&
+                            !g.IsCancelled)
                 .Include(g => g.Genre)
                 .ToList();
 
             return View(myUpcomingGigs);
 
         }
+
 
         // GET Gigs/Attending
         public ActionResult Attending()

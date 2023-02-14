@@ -22,6 +22,7 @@ namespace GigHub.Controllers.api
             base.Dispose(disposing);
         }
 
+        // POST /api/followings
         [HttpPost]
         public IHttpActionResult Follow(FollowingDto followingDto)
         {

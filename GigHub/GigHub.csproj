@@ -21,7 +21,7 @@
     <IISExpressSSLPort>44337</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -180,6 +180,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\AttendancesController.cs" />
     <Compile Include="Controllers\api\FollowingsController.cs" />
+    <Compile Include="Controllers\api\GigsController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -229,6 +230,10 @@
     <Compile Include="Migrations\202302111310357_RenameFolloweeToArtistInFollowingsTable.Designer.cs">
       <DependentUpon>202302111310357_RenameFolloweeToArtistInFollowingsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302141140446_AddIsCancelledToGigsTable.cs" />
+    <Compile Include="Migrations\202302141140446_AddIsCancelledToGigsTable.Designer.cs">
+      <DependentUpon>202302141140446_AddIsCancelledToGigsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
@@ -269,6 +274,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -366,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302111310357_RenameFolloweeToArtistInFollowingsTable.resx">
       <DependentUpon>202302111310357_RenameFolloweeToArtistInFollowingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302141140446_AddIsCancelledToGigsTable.resx">
+      <DependentUpon>202302141140446_AddIsCancelledToGigsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

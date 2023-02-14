@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using GigHub.Models;
-using System.Web.Mvc;
+﻿using GigHub.Models;
 using Microsoft.AspNet.Identity;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace GigHub.Controllers
 {
@@ -20,7 +20,7 @@ namespace GigHub.Controllers
             _context.Dispose();
         }
 
-        // GET: Artists
+        // GET Artists/Following
         public ActionResult Following()
         {
             var userId = User.Identity.GetUserId();
