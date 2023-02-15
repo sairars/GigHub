@@ -234,9 +234,28 @@
     <Compile Include="Migrations\202302141140446_AddIsCancelledToGigsTable.Designer.cs">
       <DependentUpon>202302141140446_AddIsCancelledToGigsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302141915475_AddNotifications.cs" />
+    <Compile Include="Migrations\202302141915475_AddNotifications.Designer.cs">
+      <DependentUpon>202302141915475_AddNotifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302142152286_test.cs" />
+    <Compile Include="Migrations\202302142152286_test.Designer.cs">
+      <DependentUpon>202302142152286_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302151653232_removenotificationtables.cs" />
+    <Compile Include="Migrations\202302151653232_removenotificationtables.Designer.cs">
+      <DependentUpon>202302151653232_removenotificationtables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302151710241_AddNotifications1.cs" />
+    <Compile Include="Migrations\202302151710241_AddNotifications1.Designer.cs">
+      <DependentUpon>202302151710241_AddNotifications1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\GigsViewModel.cs" />
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
@@ -376,6 +395,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302141140446_AddIsCancelledToGigsTable.resx">
       <DependentUpon>202302141140446_AddIsCancelledToGigsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302141915475_AddNotifications.resx">
+      <DependentUpon>202302141915475_AddNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302142152286_test.resx">
+      <DependentUpon>202302142152286_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302151653232_removenotificationtables.resx">
+      <DependentUpon>202302151653232_removenotificationtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302151710241_AddNotifications1.resx">
+      <DependentUpon>202302151710241_AddNotifications1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

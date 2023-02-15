@@ -1,10 +1,10 @@
-﻿using GigHub.Models;
+﻿using GigHub.Controllers;
+using GigHub.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Web.Mvc;
-using GigHub.Controllers;
 
 namespace GigHub.ViewModels
 {
@@ -12,10 +12,10 @@ namespace GigHub.ViewModels
     {
         public int Id { get; set; }
 
-        [Required] 
+        [Required]
         public string Venue { get; set; }
 
-        [Required] 
+        [Required]
         [FutureDate]
         public string Date { get; set; }
 
@@ -23,21 +23,16 @@ namespace GigHub.ViewModels
         [ValidTime]
         public string Time { get; set; }
 
-        [Display(Name = "Genre")] 
+        [Display(Name = "Genre")]
         public byte GenreId { get; set; }
 
         public IEnumerable<Genre> Genres { get; set; }
 
         public string Heading { get; set; }
 
-        public DateTime GetDateTime()
-        {
-            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
-        }
-
         public string Action
         {
-            
+
             get
             {
                 Expression<Func<GigsController, ActionResult>> update = (c => c.Update(this));
@@ -47,6 +42,11 @@ namespace GigHub.ViewModels
                     ? ((MethodCallExpression)update.Body).Method.Name
                     : ((MethodCallExpression)create.Body).Method.Name;
             }
+        }
+
+        public DateTime GetDateTime()
+        {
+            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }
     }
 }
