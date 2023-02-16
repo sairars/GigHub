@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
+
 namespace GigHub.Models
 {
     public class Gig
@@ -37,12 +38,26 @@ namespace GigHub.Models
         public void Cancel()
         {
             IsCancelled = true;
-            var notification = new Notification(this, NotificationType.Cancelled);
 
+            var notification = Notification.Cancel(this);
             var attendees = Attendances.Select(a => a.Attendee);
 
             foreach (var attendee in attendees)
                 attendee.Notify(notification);
+        }
+
+        public void Update(string venue, DateTime dateTime, byte genreId)
+        {
+            var notification = Notification.Update(this, venue, dateTime);
+            var attendees = Attendances
+                .Select(a => a.Attendee);
+
+            foreach (var attendee in attendees)
+                attendee.Notify(notification);
+
+            Venue = venue;
+            DateTime = dateTime;
+            GenreId = genreId;
         }
     }
 }

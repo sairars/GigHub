@@ -11,9 +11,9 @@ namespace GigHub.Models
 
         public DateTime DateTime { get; private set; }
 
-        public string OriginalVenue { get; set; }
+        public string OriginalVenue { get; private set; }
 
-        public DateTime? OriginalDateTime { get; set; }
+        public DateTime? OriginalDateTime { get; private set; }
 
         [Required]
         public Gig Gig { get; private set; }
@@ -30,5 +30,30 @@ namespace GigHub.Models
             DateTime = DateTime.Now;
         }
 
+        public static Notification Update(Gig gig, string venue, DateTime dateTime)
+        {
+            var notification = new Notification(gig, NotificationType.Updated);
+
+            var isTimeChanged = !DateTime.Equals(gig.DateTime, dateTime);
+            if (isTimeChanged)
+                notification.OriginalDateTime = gig.DateTime;
+
+
+            var isVenueChanged = !string.Equals(gig.Venue, venue);
+            if (isVenueChanged)
+                notification.OriginalVenue = gig.Venue;
+
+            return notification;
+        }
+
+        public static Notification Cancel(Gig gig)
+        {
+            return new Notification(gig, NotificationType.Cancelled);
+        }
+
+        public static Notification Create(Gig gig)
+        {
+            return new Notification(gig, NotificationType.Created);
+        }
     }
 }
