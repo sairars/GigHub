@@ -1,7 +1,6 @@
 ﻿using GigHub.Dtos;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
@@ -20,14 +19,6 @@ namespace GigHub.Controllers.api
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
-        }
-
-        public IEnumerable<Attendance> GetAttendance()
-        {
-
-
-            var attendances = _context.Attendances.ToList();
-            return attendances;
         }
 
         // POST /api/attendances
