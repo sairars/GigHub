@@ -43,7 +43,7 @@
     <script>
         $(document).ready(function () {
             $(".js-toggle-attendance").click(function () {
-                let button = $(this);
+                const button = $(this);
                 $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
                     .done(function () {
                         button
@@ -56,7 +56,7 @@
                     });
             });
             $(".js-toggle-following").click(function () {
-                let button = $(this);
+                const button = $(this);
                 $.post("/api/followings", { artistId: button.attr("data-artist-id") })
                     .done(function () {
                         button.text("Following");
