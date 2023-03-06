@@ -45,7 +45,7 @@ namespace GigHub.Controllers.api
 
         // DELETE /api/followings
         [HttpDelete]
-        public IHttpActionResult Follow(string id)
+        public IHttpActionResult Unfollow(string id)
         {
             var userId = User.Identity.GetUserId();
 
