@@ -1,0 +1,26 @@
+﻿@model GigHub.ViewModels.GigDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Gig.Artist.Name
+<button 
+    data-artist-id="@Model.Gig.ArtistId" 
+    class="btn @(Model.IsFollowing? "btn-info" : "btn-default") js-toggle-following">@(Model.IsFollowing? "Following" : "Follow")</button>
+</h2>
+<p>Performing at @Model.Gig.Venue On @Model.Gig.DateTime.ToString("d MMM") at @Model.Gig.DateTime.ToString("HH:mm")</p>
+
+@if (Model.IsAttending)
+{
+    <p>You are going to this event.</p>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            GigDetailsController.init();
+        });
+    </script>
+}

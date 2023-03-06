@@ -133,21 +133,30 @@ namespace GigHub.Controllers
         {
             var userId = User.Identity.GetUserId();
             var gigsAttending = _context.Attendances
-                                        .Where(a => a.AttendeeId == userId)
+                                        .Where(a => a.AttendeeId == userId &&
+                                                    a.Gig.DateTime > DateTime.Now &&
+                                                    !a.Gig.IsCancelled)
                                         .Select(a => a.Gig)
                                         .Include(g => g.Artist)
                                         .Include(g => g.Genre)
                                         .ToList();
 
+            var attendances = _context.Attendances
+                                        .Where(a => a.AttendeeId == userId &&
+                                                    a.Gig.DateTime > DateTime.Now &&
+                                                    !a.Gig.IsCancelled)
+                                        .ToList()
+                                        .ToLookup(a => a.GigId);
+
             var viewModel = new GigsViewModel
             {
                 UpcomingGigs = gigsAttending,
                 ShowActions = User.Identity.IsAuthenticated,
-                Heading = "Gigs I'm Attending"
+                Heading = "Gigs I'm Attending",
+                Attendances = attendances
             };
 
             return View("Gigs", viewModel);
-
         }
 
         // POST Gigs/Search
@@ -155,6 +164,29 @@ namespace GigHub.Controllers
         public ActionResult Search(GigsViewModel viewModel)
         {
             return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
+        }
+
+        // Get Gigs/Details/1
+        public ActionResult Details(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var gig = _context.Gigs
+                .Include(g => g.Artist)
+                .SingleOrDefault(g => g.Id == id);
+
+            if (gig == null)
+                return HttpNotFound();
+
+            var viewModel = new GigDetailsViewModel
+            {
+                Gig = gig,
+                IsAttending = _context.Attendances
+                    .SingleOrDefault(a => a.GigId == gig.Id && a.AttendeeId == userId) != null,
+                IsFollowing = _context.Followings
+                    .SingleOrDefault(f => f.ArtistId == gig.ArtistId && f.FollowerId == userId) != null
+            };
+
+            return View(viewModel);
         }
     }
 }
