@@ -27,10 +27,10 @@ namespace GigHub.Core.Models
 
         public UserNotification(ApplicationUser user, Notification notification)
         {
-
-
             User = user ?? throw new ArgumentNullException("user");
             Notification = notification ?? throw new ArgumentNullException("notification");
+            UserId = user.Id;
+            NotificationId = notification.Id;
         }
 
         public void Read()

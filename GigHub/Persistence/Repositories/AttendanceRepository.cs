@@ -19,8 +19,7 @@ namespace GigHub.Persistence.Repositories
         {
             return _context.Attendances
                 .Where(a => a.AttendeeId == userId &&
-                            a.Gig.DateTime > DateTime.Now &&
-                            !a.Gig.IsCancelled)
+                            a.Gig.DateTime > DateTime.Now)
                 .ToList();
         }
 

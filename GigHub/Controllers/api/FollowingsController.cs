@@ -22,10 +22,11 @@ namespace GigHub.Controllers.api
         {
             var userId = User.Identity.GetUserId();
 
-            if (_unitOfWork.Followings.GetFollowing(followingDto.ArtistId, userId) != null)
+            var following = _unitOfWork.Followings.GetFollowing(followingDto.ArtistId, userId);
+            if (following != null)
                 return BadRequest("This following already exists in the system.");
 
-            var following = new Following
+            following = new Following
             {
                 ArtistId = followingDto.ArtistId,
                 FollowerId = userId

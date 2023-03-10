@@ -1,7 +1,6 @@
 ﻿using GigHub.Core.Models;
 using GigHub.Core.Repositories;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace GigHub.Persistence.Repositories
@@ -15,17 +14,7 @@ namespace GigHub.Persistence.Repositories
             _context = context;
         }
 
-        public IEnumerable<Notification> GetUnReadNotificationsByUser(string userId)
-        {
-            return _context.UserNotifications
-                .Where(un => un.UserId == userId &&
-                             !un.IsRead)
-                .Select(un => un.Notification)
-                .Include(n => n.Gig.Artist)
-                .ToList();
-        }
-
-        public IEnumerable<UserNotification> GetUnreadUserNotifications(string userId)
+        public IEnumerable<UserNotification> GetUserNotificationsFor(string userId)
         {
             return _context.UserNotifications
                             .Where(un => un.UserId == userId &&

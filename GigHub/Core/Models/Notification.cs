@@ -28,7 +28,7 @@ namespace GigHub.Core.Models
             DateTime = DateTime.Now;
         }
 
-        public static Notification Update(Gig gig, string venue, DateTime dateTime)
+        public static Notification GenerateGigUpdatedNotification(Gig gig, string venue, DateTime dateTime)
         {
             var notification = new Notification(gig, NotificationType.Updated);
 
@@ -44,12 +44,12 @@ namespace GigHub.Core.Models
             return notification;
         }
 
-        public static Notification Cancel(Gig gig)
+        public static Notification GenerateGigCancelledNotification(Gig gig)
         {
             return new Notification(gig, NotificationType.Cancelled);
         }
 
-        public static Notification Create(Gig gig)
+        public static Notification GenerateGigCreatedNotification(Gig gig)
         {
             return new Notification(gig, NotificationType.Created);
         }

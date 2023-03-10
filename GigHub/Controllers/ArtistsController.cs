@@ -17,7 +17,7 @@ namespace GigHub.Controllers
         // GET Artists/Following
         public ActionResult Following()
         {
-            var artists = _unitOfWork.Followings.GetArtistsFollowedByUser(User.Identity.GetUserId());
+            var artists = _unitOfWork.Users.GetArtistsFollowedBy(User.Identity.GetUserId());
             return View(artists);
         }
     }

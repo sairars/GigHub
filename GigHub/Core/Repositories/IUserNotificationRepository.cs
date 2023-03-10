@@ -5,7 +5,6 @@ namespace GigHub.Core.Repositories
 {
     public interface IUserNotificationRepository
     {
-        IEnumerable<Notification> GetUnReadNotificationsByUser(string userId);
-        IEnumerable<UserNotification> GetUnreadUserNotifications(string userId);
+        IEnumerable<UserNotification> GetUserNotificationsFor(string userId);
     }
 }

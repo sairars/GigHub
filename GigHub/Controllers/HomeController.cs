@@ -20,15 +20,15 @@ namespace GigHub.Controllers
         {
             var upcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs(query);
 
+            var attendances = _unitOfWork.Attendances
+                .GetFutureAttendances(User.Identity.GetUserId());
             var viewModel = new GigsViewModel
             {
                 UpcomingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
                 Heading = "Upcoming Gigs",
                 SearchTerm = query,
-                Attendances = _unitOfWork.Attendances
-                                .GetFutureAttendances(User.Identity.GetUserId())
-                                .ToLookup(a => a.GigId)
+                Attendances = attendances.ToLookup(a => a.GigId)
             };
 
             return View("Gigs", viewModel);

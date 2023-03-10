@@ -1,10 +1,9 @@
-﻿using GigHub.Persistence;
+﻿using GigHub.Core;
+using GigHub.Core.Models;
+using GigHub.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
-using GigHub.Core;
-using GigHub.Core.Models;
-using GigHub.Core.ViewModels;
 
 namespace GigHub.Controllers
 {
@@ -119,12 +118,13 @@ namespace GigHub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
+            var attendances = _unitOfWork.Attendances.GetFutureAttendances(userId);
             var viewModel = new GigsViewModel
             {
                 ShowActions = User.Identity.IsAuthenticated,
                 Heading = "Gigs I'm Attending",
                 UpcomingGigs = _unitOfWork.Gigs.GetGigsUserIsAttending(userId),
-                Attendances = _unitOfWork.Attendances.GetFutureAttendances(userId).ToLookup(a => a.GigId)
+                Attendances = attendances.ToLookup(a => a.GigId)
             };
 
             return View("Gigs", viewModel);

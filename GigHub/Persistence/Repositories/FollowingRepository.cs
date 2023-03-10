@@ -21,14 +21,6 @@ namespace GigHub.Persistence.Repositories
                                       f.FollowerId == followerId);
         }
 
-        public IEnumerable<ApplicationUser> GetArtistsFollowedByUser(string userId)
-        {
-            return _context.Followings
-                .Where(f => f.FollowerId == userId)
-                .Select(f => f.Artist)
-                .ToList();
-        }
-
         public void Add(Following following)
         {
             _context.Followings.Add(following);
