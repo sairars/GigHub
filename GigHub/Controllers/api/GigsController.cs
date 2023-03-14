@@ -4,7 +4,7 @@ using System.Web.Http;
 
 namespace GigHub.Controllers.api
 {
-    [System.Web.Http.Authorize]
+    [Authorize]
     public class GigsController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -15,7 +15,7 @@ namespace GigHub.Controllers.api
         }
 
         // Delete /api/Gigs
-        [System.Web.Http.HttpDelete]
+        [HttpDelete]
         public IHttpActionResult Cancel(int id)
         {
             var userId = User.Identity.GetUserId();
